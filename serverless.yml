@@ -1,0 +1,16 @@
+service: sls-stage-bug
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, 'staging'}
+  region: ${opt:region, 'us-east-1'}
+
+functions:
+  hello:
+    handler: handler.hello
+    memorySize: 128
+    events:
+      - http:
+          method: get
+          path: hello
